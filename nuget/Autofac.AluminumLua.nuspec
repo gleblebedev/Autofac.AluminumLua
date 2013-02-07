@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Autofac.AluminumLua</id>
+    <version>1.0.0.2</version>
+    <title>Autofac.AluminumLua</title>
+    <authors>gleblebedev</authors>
+    <owners>gleblebedev</owners>
+    <projectUrl>https://github.com/gleblebedev/Autofac.AluminumLua</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Autofac module configured by Lua script file.</description>
+    <releaseNotes />
+    <copyright>Copyright 2013 Gleb Lebedev</copyright>
+    <tags>Lua Autofac AluminumLua</tags>
+    <dependencies>
+      <dependency id="Autofac"/>
+      <dependency id="AluminumLua"/>
+    </dependencies>
+  </metadata>
+</package>

@@ -55,11 +55,6 @@ namespace Autofac.AluminumLua
 			}
 		}
 
-		public object Resolve(global::Autofac.IComponentContext context, object type)
-		{
-			Type t = ResolveTypeFromLuaUserObject(type);
-			return context.Resolve(t);
-		}
 
 		public object As(object rb, object type)
 		{
@@ -70,7 +65,7 @@ namespace Autofac.AluminumLua
 			return m.Invoke(rb, new object[] { new Type[] { t } });
 		}
 
-		private static Type ResolveTypeFromLuaUserObject(object type)
+		internal static Type ResolveTypeFromLuaUserObject(object type)
 		{
 			Type t;
 			if (type is string)
@@ -121,31 +116,6 @@ namespace Autofac.AluminumLua
 			return this.builder.RegisterType(t);
 		}
 
-		public LuaObject Activate(LuaObject[] args)
-		{
-			Type t = ResolveTypeFromLuaUserObject(args[0].AsUserData());
-			return LuaObject.FromUserData(Activator.CreateInstance(t, (from a in args select a.AsUserData()).Skip(1).ToArray()));
-		}
 
-		public LuaObject Invoke(LuaObject[] args)
-		{
-			var obj = args[0].AsUserData();
-			var name = args[1].AsString();
-			var m = obj.GetType().GetMethod(name, (from a in args select a.AsUserData().GetType()).Skip(2).ToArray());
-			return LuaObject.FromUserData(m.Invoke(obj, (from a in args select a.AsUserData()).Skip(2).ToArray()));
-		}
-
-		public object Type(object arg)
-		{
-			Type t = ResolveTypeFromLuaUserObject(arg);
-			return LuaObject.FromUserData(t);
-		}
-
-		public object TypeOf(object arg)
-		{
-			if (arg == null) return LuaObject.Nil;
-			Type t = arg.GetType();
-			return LuaObject.FromUserData(t);
-		}
 	}
 }
