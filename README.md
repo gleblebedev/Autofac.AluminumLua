@@ -23,7 +23,7 @@ builder.Register(GetMongoClient)
 ```
 
 
-Full real live example
+Full real life example
 ----------------------
 
 ```lua
