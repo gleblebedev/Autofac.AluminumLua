@@ -41,9 +41,9 @@ namespace Autofac.AluminumLua
 
 		public void RegisterModule(object type)
 		{
-			if (type is Type)
+			if (type is Type || type is string)
 			{
-				this.builder.RegisterModule((IModule)Activator.CreateInstance((Type)type));
+				this.builder.RegisterModule((IModule)Activator.CreateInstance(ResolveTypeFromLuaUserObject(type)));
 			}
 			else if (type is IModule)
 			{
